@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PowerUpScript : MonoBehaviour
 {
@@ -15,7 +17,21 @@ public class PowerUpScript : MonoBehaviour
     public PowerUpEffect effect8;
     public PowerUpEffect effect9;
 
-    public List<PowerUpEffect> getThreePowerUps()
+    [Header("PowerUp UI")]
+    public GameObject UICanvas;
+    public Button effect1Button;
+    public Button effect2Button;
+    public Button effect3Button;
+    public TextMeshProUGUI effect1Text;
+    public TextMeshProUGUI effect2Text;
+    public TextMeshProUGUI effect3Text;
+
+    private void Start()
+    {
+        CreatePowerUpWindow();
+    }
+
+    public List<PowerUpEffect> GetThreePowerUps()
     {
         List<PowerUpEffect> all_effects = new List<PowerUpEffect>();
         all_effects.Add(effect1);
@@ -39,6 +55,24 @@ public class PowerUpScript : MonoBehaviour
         }
 
         return selected_effects;
+    }
+
+    public void CreatePowerUpWindow()
+    {
+        List<PowerUpEffect> random_powerups = GetThreePowerUps();
+        effect1Text.text = random_powerups[0].weaponName + " : " + random_powerups[0].text;
+        effect2Text.text = random_powerups[1].weaponName + " : " + random_powerups[1].text;
+        effect3Text.text = random_powerups[2].weaponName + " : " + random_powerups[2].text;
+        effect1Button.onClick.AddListener(delegate {ButtonPressed(random_powerups[0]);});
+        effect2Button.onClick.AddListener(delegate {ButtonPressed(random_powerups[1]);});
+        effect3Button.onClick.AddListener(delegate {ButtonPressed(random_powerups[2]);});
+        UICanvas.SetActive(true);
+    }
+
+    public void ButtonPressed(PowerUpEffect p)
+    {
+        p.ApplyPowerUp();
+        UICanvas.SetActive(false);
     }
 
 }
