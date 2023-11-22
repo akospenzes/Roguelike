@@ -6,6 +6,14 @@ public class ProjectileScript : MonoBehaviour
 {
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Destroy(gameObject);
+        if (collision.gameObject.tag == "Obstacle")
+        {
+            Destroy(gameObject);
+        }
+
+        if (collision.gameObject.tag == "Player")
+        {
+            //Physics2D.IgnoreCollision();
+        }
     }
 }

@@ -4,12 +4,6 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    Rigidbody2D rb;
-    Vector2 movementDir;
-    Vector2 mousePos;
-    float remainingCooldown;
-    bool canShoot;
-
     [Header("Movement")]
     public float movementSpeed;
 
@@ -18,26 +12,27 @@ public class PlayerController : MonoBehaviour
     public GameObject projectilePrefab;
     public Transform projectileSpawnPoint;
     public float weaponCooldown;
+
+    [Header("Weapons")]
+    public Weapon pulseRifle;
+    public Weapon shotgun;
+    public Weapon pistols;
+
+
+    private Rigidbody2D rb;
+    private Vector2 movementDir;
+    private Vector2 mousePos;
+    private Weapon selectedWeapon;
     
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        canShoot = false;
-        remainingCooldown = weaponCooldown;
+        selectedWeapon = pulseRifle;
     }
 
     void Update()
     {
         GetInput();
-
-        if (remainingCooldown > 0f)
-        {
-            remainingCooldown -= Time.deltaTime;            
-        }
-        if (remainingCooldown <= 0f)
-        {
-            canShoot = true;
-        }
     }
 
     private void FixedUpdate()
@@ -59,6 +54,19 @@ public class PlayerController : MonoBehaviour
         {
             Shoot();
         }
+
+        if (Input.GetKeyDown("1"))
+        {
+            selectedWeapon = pulseRifle;
+        }
+        if (Input.GetKeyDown("2"))
+        {
+            selectedWeapon = shotgun;
+        }
+        if (Input.GetKeyDown("3"))
+        {
+            selectedWeapon = pistols;
+        }
     }
 
     private void Move()
@@ -75,13 +83,6 @@ public class PlayerController : MonoBehaviour
 
     private void Shoot()
     {
-        if (canShoot)
-        {
-            GameObject projectile = Instantiate(projectilePrefab, projectileSpawnPoint.position, projectileSpawnPoint.rotation);
-            Rigidbody2D projectileRb = projectile.GetComponent<Rigidbody2D>();
-            projectileRb.AddForce(projectileSpawnPoint.up * projectileSpeed, ForceMode2D.Impulse);
-            canShoot = false;
-            remainingCooldown = weaponCooldown;
-        }
+        selectedWeapon.Shoot(projectilePrefab, projectileSpawnPoint, projectileSpeed);
     }
 }
