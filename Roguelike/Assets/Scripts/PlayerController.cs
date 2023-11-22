@@ -11,7 +11,6 @@ public class PlayerController : MonoBehaviour
     public float projectileSpeed;
     public GameObject projectilePrefab;
     public Transform projectileSpawnPoint;
-    public float weaponCooldown;
 
     [Header("Weapons")]
     public Weapon pulseRifle;

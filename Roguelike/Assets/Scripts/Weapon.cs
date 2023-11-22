@@ -35,7 +35,7 @@ public class Weapon : MonoBehaviour
 
     public void IncreaseFireRate(float fireRate) 
     {
-        if (fireRate != 0.0f) 
+        if (fireRate > 1.0f) 
         {
             cooldown /= fireRate;
         }
