@@ -21,6 +21,7 @@ public class Pistols : Weapon
         if (canShoot)
         {
             GameObject projectile = Instantiate(projectilePrefab, projectileSpawnPoint.position, projectileSpawnPoint.rotation);
+            projectile.GetComponent<ProjectileScript>().SetDamage(damage);
             Rigidbody2D projectileRb = projectile.GetComponent<Rigidbody2D>();
             projectileRb.AddForce(projectileSpawnPoint.up * projectileSpeed, ForceMode2D.Impulse);
             canShoot = false;

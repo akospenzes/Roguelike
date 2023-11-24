@@ -43,10 +43,12 @@ public class PulseRifle : Weapon
     private void CreateProjectiles()
     {   //eltolás
         GameObject projectile1 = Instantiate(projectilePrefab_, projectileSpawnPoint_.position, projectileSpawnPoint_.rotation);
+        projectile1.GetComponent<ProjectileScript>().SetDamage(damage);
         Rigidbody2D projectileRb1 = projectile1.GetComponent<Rigidbody2D>();
         projectileRb1.AddForce(projectileSpawnPoint_.up * projectileSpeed_, ForceMode2D.Impulse);
 
         GameObject projectile2 = Instantiate(projectilePrefab_, projectileSpawnPoint_.position, projectileSpawnPoint_.rotation);
+        projectile2.GetComponent<ProjectileScript>().SetDamage(damage);
         Rigidbody2D projectileRb2 = projectile2.GetComponent<Rigidbody2D>();
         projectileRb2.AddForce(projectileSpawnPoint_.up * projectileSpeed_, ForceMode2D.Impulse);
     }

@@ -50,15 +50,18 @@ public class Shotgun : Weapon
         Vector2 force2 = rotate(force1, 0.2f);
         Vector2 force3 = rotate(force1, -0.2f);
 
-        GameObject projectile = Instantiate(projectilePrefab_, projectileSpawnPoint_.position, projectileSpawnPoint_.rotation);
-        Rigidbody2D projectileRb = projectile.GetComponent<Rigidbody2D>();
+        GameObject projectile1 = Instantiate(projectilePrefab_, projectileSpawnPoint_.position, projectileSpawnPoint_.rotation);
+        projectile1.GetComponent<ProjectileScript>().SetDamage(damage);
+        Rigidbody2D projectileRb = projectile1.GetComponent<Rigidbody2D>();
         projectileRb.AddForce(force1, ForceMode2D.Impulse);
 
         GameObject projectile2 = Instantiate(projectilePrefab_, projectileSpawnPoint_.position, projectileSpawnPoint_.rotation);
+        projectile2.GetComponent<ProjectileScript>().SetDamage(damage);
         Rigidbody2D projectileRb2 = projectile2.GetComponent<Rigidbody2D>();
         projectileRb2.AddForce(force2, ForceMode2D.Impulse);
 
         GameObject projectile3 = Instantiate(projectilePrefab_, projectileSpawnPoint_.position, projectileSpawnPoint_.rotation);
+        projectile3.GetComponent<ProjectileScript>().SetDamage(damage);
         Rigidbody2D projectileRb3 = projectile3.GetComponent<Rigidbody2D>();
         projectileRb3.AddForce(force3, ForceMode2D.Impulse);
     }

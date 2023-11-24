@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [Header("Movement")]
+    [Header("Player stats")]
+    public int lives;
     public float movementSpeed;
 
-    [Header("Projectile")]
+    [Header("Projectile stats")]
     public float projectileSpeed;
     public GameObject projectilePrefab;
     public Transform projectileSpawnPoint;
@@ -16,7 +17,6 @@ public class PlayerController : MonoBehaviour
     public Weapon pulseRifle;
     public Weapon shotgun;
     public Weapon pistols;
-
 
     private Rigidbody2D rb;
     private Vector2 movementDir;
@@ -83,5 +83,18 @@ public class PlayerController : MonoBehaviour
     private void Shoot()
     {
         selectedWeapon.Shoot(projectilePrefab, projectileSpawnPoint, projectileSpeed);
+    }
+
+    public void HitByEnemy()
+    {
+        lives--;
+        Physics2D.IgnoreLayerCollision(6, 9, true);
+        Invoke("EnableEnemyCollision", 3);
+    }
+
+    private void EnableEnemyCollision()
+    {
+        Physics2D.IgnoreLayerCollision(6, 9, false);
+
     }
 }

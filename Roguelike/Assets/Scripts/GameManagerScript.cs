@@ -7,7 +7,7 @@ public class GameManagerScript : MonoBehaviour
     public PowerUpScript powerUpManager;
     void Start()
     {
-        powerUpManager.CreatePowerUpWindow();
+        //powerUpManager.CreatePowerUpWindow();
     }
 
 }
