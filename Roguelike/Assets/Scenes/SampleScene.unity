@@ -339,7 +339,7 @@ MonoBehaviour:
   fireRate: 0
   multiplier: 2
   weaponName: Pistols
-  text: Increase weapon multiplier rate by
+  text: Increase weapon multiplier rate
 --- !u!4 &216729859
 Transform:
   m_ObjectHideFlags: 0
@@ -764,7 +764,7 @@ MonoBehaviour:
   fireRate: 0
   multiplier: 2
   weaponName: Shotgun
-  text: Increase weapon multiplier rate by
+  text: Increase weapon multiplier rate
 --- !u!4 &533718171
 Transform:
   m_ObjectHideFlags: 0
@@ -1004,7 +1004,7 @@ MonoBehaviour:
   fireRate: 0
   multiplier: 2
   weaponName: Pulse Rifle
-  text: Increase weapon multiplier rate by
+  text: Increase weapon multiplier rate
 --- !u!4 &961127956
 Transform:
   m_ObjectHideFlags: 0
@@ -1035,7 +1035,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1068457912
 Transform:
   m_ObjectHideFlags: 0
@@ -1208,7 +1208,7 @@ MonoBehaviour:
   fireRate: 0
   multiplier: 0
   weaponName: Shotgun
-  text: Increase weapon damage by
+  text: Increase weapon damage
 --- !u!4 &1120483882
 Transform:
   m_ObjectHideFlags: 0
@@ -1280,7 +1280,7 @@ MonoBehaviour:
   fireRate: 0
   multiplier: 0
   weaponName: Pistols
-  text: Increase weapon damage by
+  text: Increase weapon damage
 --- !u!4 &1132928926
 Transform:
   m_ObjectHideFlags: 0
@@ -1305,6 +1305,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1134320104}
+  - component: {fileID: 1134320105}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1321,12 +1322,25 @@ Transform:
   m_GameObject: {fileID: 1134320103}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.5311165, y: -0.33714932, z: -0.14880341}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1134320105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1134320103}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acba546fc8881c647bd4a6c9fa43ebe3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powerUpManager: {fileID: 54185995}
 --- !u!1 &1213862921
 GameObject:
   m_ObjectHideFlags: 0
@@ -1629,7 +1643,7 @@ MonoBehaviour:
   fireRate: 1.2
   multiplier: 0
   weaponName: Shotgun
-  text: Increase weapon fire rate by
+  text: Increase weapon fire rate
 --- !u!4 &1270371682
 Transform:
   m_ObjectHideFlags: 0
@@ -1813,7 +1827,7 @@ MonoBehaviour:
   fireRate: 0
   multiplier: 0
   weaponName: Pulse Rifle
-  text: Increase weapon damage by
+  text: Increase weapon damage
 --- !u!4 &1356348309
 Transform:
   m_ObjectHideFlags: 0
@@ -1840,7 +1854,7 @@ GameObject:
   - component: {fileID: 1396770246}
   - component: {fileID: 1396770245}
   - component: {fileID: 1396770247}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wall
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
@@ -1970,7 +1984,7 @@ GameObject:
   - component: {fileID: 1440547237}
   - component: {fileID: 1440547236}
   - component: {fileID: 1440547238}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wall (1)
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
@@ -2123,7 +2137,7 @@ MonoBehaviour:
   fireRate: 1.2
   multiplier: 0
   weaponName: Pulse Rifle
-  text: Increase weapon fire rate by
+  text: Increase weapon fire rate
 --- !u!4 &1497523856
 Transform:
   m_ObjectHideFlags: 0
@@ -2384,7 +2398,7 @@ RectTransform:
   m_GameObject: {fileID: 1634649025}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.9, y: 0.9, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1105572733}
@@ -2572,7 +2586,7 @@ MonoBehaviour:
   fireRate: 1.2
   multiplier: 0
   weaponName: Pistols
-  text: Increase weapon fire rate by
+  text: Increase weapon fire rate
 --- !u!4 &1699583651
 Transform:
   m_ObjectHideFlags: 0
@@ -2599,7 +2613,7 @@ GameObject:
   - component: {fileID: 1703776406}
   - component: {fileID: 1703776405}
   - component: {fileID: 1703776404}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wall (3)
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
@@ -2863,7 +2877,7 @@ GameObject:
   - component: {fileID: 2032687827}
   - component: {fileID: 2032687826}
   - component: {fileID: 2032687825}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wall (2)
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
@@ -3006,6 +3020,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 31407552689978557, guid: 39c0c2cdd585e084197c85d6fb0ab927, type: 3}
+      propertyPath: cooldown
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 137624753093427658, guid: 39c0c2cdd585e084197c85d6fb0ab927, type: 3}
+      propertyPath: cooldown
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4474520187152786984, guid: 39c0c2cdd585e084197c85d6fb0ab927, type: 3}
+      propertyPath: cooldown
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8011401954310410390, guid: 39c0c2cdd585e084197c85d6fb0ab927, type: 3}
       propertyPath: m_Name
       value: Player

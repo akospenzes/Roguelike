@@ -10,10 +10,5 @@ public class ProjectileScript : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
-        if (collision.gameObject.tag == "Player")
-        {
-            //Physics2D.IgnoreCollision();
-        }
     }
 }
