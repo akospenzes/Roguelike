@@ -26,6 +26,8 @@ public class PowerUpScript : MonoBehaviour
     public TextMeshProUGUI effect2Text;
     public TextMeshProUGUI effect3Text;
 
+    public bool windowActive = false;
+
     private void Start()
     {
     }
@@ -58,6 +60,7 @@ public class PowerUpScript : MonoBehaviour
 
     public void CreatePowerUpWindow()
     {
+        windowActive = true;
         List<PowerUpEffect> random_powerups = GetThreePowerUps();
         effect1Text.text = random_powerups[0].weaponName + " : " + random_powerups[0].text;
         effect2Text.text = random_powerups[1].weaponName + " : " + random_powerups[1].text;
@@ -70,6 +73,7 @@ public class PowerUpScript : MonoBehaviour
 
     public void ButtonPressed(PowerUpEffect p)
     {
+        windowActive = false;
         p.ApplyPowerUp();
         UICanvas.SetActive(false);
     }

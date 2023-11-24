@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using Pathfinding;
 using System.Collections;
 using System.Collections.Generic;
@@ -45,5 +46,10 @@ public class EnemyController : MonoBehaviour
 
             gameObject.GetComponent<AIDestinationSetter>().target = collision.gameObject.transform;
         }
+    }
+
+    public void SetAIDestination(GameObject player)
+    {
+        gameObject.GetComponent<AIDestinationSetter>().target = player.transform;
     }
 }
