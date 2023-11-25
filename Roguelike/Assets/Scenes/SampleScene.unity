@@ -1928,7 +1928,7 @@ MonoBehaviour:
   player: {fileID: 262299078}
   enemyPrefab: {fileID: 2210099213266774570, guid: 81580cffe20beba4d8007e7a2d440773, type: 3}
   waveTime: 10
-  enemyPerWave: 200
+  enemyPerWave: 5
   EndGameUI: {fileID: 835599983}
   scoreText: {fileID: 1860358772}
   spawnRadius: 30
@@ -4213,7 +4213,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 3181471439391289667, guid: 39c0c2cdd585e084197c85d6fb0ab927, type: 3}
+    - {fileID: 5036844264408643674, guid: 39c0c2cdd585e084197c85d6fb0ab927, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 39c0c2cdd585e084197c85d6fb0ab927, type: 3}

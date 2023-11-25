@@ -47,6 +47,9 @@ MonoBehaviour:
   damage: 8
   cooldown: 0.2
   multiplier: 1
+  projectilePrefab_: {fileID: 0}
+  projectileSpawnPoint_: {fileID: 0}
+  projectileSpeed_: 0
 --- !u!1 &4620853990423048122
 GameObject:
   m_ObjectHideFlags: 0
@@ -125,6 +128,9 @@ MonoBehaviour:
   damage: 10
   cooldown: 0.3
   multiplier: 1
+  projectilePrefab_: {fileID: 0}
+  projectileSpawnPoint_: {fileID: 0}
+  projectileSpeed_: 0
 --- !u!1 &4996584697388684262
 GameObject:
   m_ObjectHideFlags: 0
@@ -332,10 +338,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29213ae278bcfde49824c2821618f742, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 0
   movementSpeed: 10
-  projectileSpeed: 18
-  projectilePrefab: {fileID: 8324856970280442127, guid: af8346d756e19884e972379641f8a5c8, type: 3}
-  projectileSpawnPoint: {fileID: 2839359925506150978}
   pulseRifle: {fileID: 137624753093427658}
   shotgun: {fileID: 4474520187152786984}
   pistols: {fileID: 31407552689978557}
@@ -386,3 +390,6 @@ MonoBehaviour:
   damage: 15
   cooldown: 0.8
   multiplier: 1
+  projectilePrefab_: {fileID: 0}
+  projectileSpawnPoint_: {fileID: 0}
+  projectileSpeed_: 0
