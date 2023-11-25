@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class Shotgun : Weapon
 {
-    private GameObject projectilePrefab_;
-    private Transform projectileSpawnPoint_;
-    private float projectileSpeed_;
     // Start is called before the first frame update
     protected override void Start()
     {
@@ -19,12 +16,8 @@ public class Shotgun : Weapon
         base.Update();
     }
 
-    public override void Shoot(GameObject projectilePrefab, Transform projectileSpawnPoint, float projectileSpeed)
+    public override void Shoot()
     {
-        projectilePrefab_ = projectilePrefab;
-        projectileSpawnPoint_ = projectileSpawnPoint;
-        projectileSpeed_ = projectileSpeed;
-
         if (canShoot)
         {
             for (int i = 0; i < multiplier; i++) 

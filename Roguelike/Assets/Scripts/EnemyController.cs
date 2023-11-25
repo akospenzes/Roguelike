@@ -52,4 +52,9 @@ public class EnemyController : MonoBehaviour
     {
         gameObject.GetComponent<AIDestinationSetter>().target = player.transform;
     }
+
+    public void SetMaxHealth(float amount)
+    {
+        maxHealth = amount;
+    }
 }

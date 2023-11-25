@@ -16,16 +16,29 @@ public class Pistols : Weapon
         base.Update();
     }
 
-    public override void Shoot(GameObject projectilePrefab, Transform projectileSpawnPoint, float projectileSpeed)
+    public override void Shoot()
     {
         if (canShoot)
         {
-            GameObject projectile = Instantiate(projectilePrefab, projectileSpawnPoint.position, projectileSpawnPoint.rotation);
-            projectile.GetComponent<ProjectileScript>().SetDamage(damage);
-            Rigidbody2D projectileRb = projectile.GetComponent<Rigidbody2D>();
-            projectileRb.AddForce(projectileSpawnPoint.up * projectileSpeed, ForceMode2D.Impulse);
+            for (int i = 0; i < multiplier; i++)
+            {
+                if (i == 0)
+                    CreateProjectiles();
+                else
+                    Invoke("CreateProjectiles", i * 0.05f);
+            }
             canShoot = false;
             remainingCooldown = cooldown;
         }
+    }
+
+    private void CreateProjectiles()
+    {
+        Vector2 force1 = projectileSpawnPoint_.up * projectileSpeed_;
+
+        GameObject projectile1 = Instantiate(projectilePrefab_, projectileSpawnPoint_.position, projectileSpawnPoint_.rotation);
+        projectile1.GetComponent<ProjectileScript>().SetDamage(damage);
+        Rigidbody2D projectileRb = projectile1.GetComponent<Rigidbody2D>();
+        projectileRb.AddForce(force1, ForceMode2D.Impulse);
     }
 }

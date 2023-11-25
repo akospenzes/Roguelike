@@ -5,13 +5,8 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [Header("Player stats")]
-    public int lives;
+    public int health;
     public float movementSpeed;
-
-    [Header("Projectile stats")]
-    public float projectileSpeed;
-    public GameObject projectilePrefab;
-    public Transform projectileSpawnPoint;
 
     [Header("Weapons")]
     public Weapon pulseRifle;
@@ -49,7 +44,7 @@ public class PlayerController : MonoBehaviour
 
         mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetKey("space"))
         {
             Shoot();
         }
@@ -82,12 +77,12 @@ public class PlayerController : MonoBehaviour
 
     private void Shoot()
     {
-        selectedWeapon.Shoot(projectilePrefab, projectileSpawnPoint, projectileSpeed);
+        selectedWeapon.Shoot();
     }
 
     public void HitByEnemy()
     {
-        lives--;
+        health--;
         Physics2D.IgnoreLayerCollision(6, 9, true);
         Invoke("EnableEnemyCollision", 3);
     }
@@ -96,5 +91,15 @@ public class PlayerController : MonoBehaviour
     {
         Physics2D.IgnoreLayerCollision(6, 9, false);
 
+    }
+
+    public void IncreaseHealth(int amount)
+    {
+        health += amount;
+    }
+
+    public void IncreaseMovementSpeed(float amount)
+    {
+        movementSpeed += amount;
     }
 }

@@ -12,6 +12,10 @@ public class Weapon : MonoBehaviour
     protected bool canShoot;
     protected float remainingCooldown;
 
+    public GameObject projectilePrefab_;
+    public Transform projectileSpawnPoint_;
+    public float projectileSpeed_;
+
     protected virtual void Start()
     {
         canShoot = true;
@@ -30,7 +34,7 @@ public class Weapon : MonoBehaviour
         }
     }
 
-    public virtual void Shoot(GameObject projectilePrefab, Transform projectileSpawnPoint, float projectileSpeed){ }
+    public virtual void Shoot(){ }
 
     public void IncreaseFireRate(float fireRate) 
     {
@@ -47,9 +51,6 @@ public class Weapon : MonoBehaviour
 
     public void IncreaseMultiplier(int multiplier_)
     {
-        if (multiplier_ > 1)
-        {
-            multiplier *= multiplier_;
-        }
+        multiplier += multiplier_;
     }
 }

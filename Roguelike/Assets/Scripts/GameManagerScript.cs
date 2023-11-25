@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEditor;
 using UnityEngine;
 
@@ -12,17 +13,22 @@ public class GameManagerScript : MonoBehaviour
     public GameObject enemyPrefab;
     public float waveTime;
     public int enemyPerWave;
+    public GameObject EndGameUI;
+    public TextMeshProUGUI scoreText;
+    public float spawnRadius;
 
     public GameObject enemySpawnPoint;
 
-    private int wavecount = 1;
+    private int waveCount = 1;
     private List<GameObject> enemies;
     private bool waveActive = false;
     private bool windowActive;
-    private bool enemiesSpawning = false; 
+    private bool enemiesSpawning = false;
+    private PlayerController pc;
     void Start()
     {
         enemies = new List<GameObject>();
+        pc = player.GetComponent<PlayerController>();
     }
 
     private void Update()
@@ -40,6 +46,11 @@ public class GameManagerScript : MonoBehaviour
                 EndWave();
             }
         }
+        if (pc.health <= 0)
+        {
+            Debug.Log("game ended");
+            EndGame();
+        }
     }
 
     private void StartWave()
@@ -47,7 +58,7 @@ public class GameManagerScript : MonoBehaviour
         enemiesSpawning = true;
         waveActive = true;
         enemies.Clear();
-        for (int i = 0; i < wavecount * enemyPerWave; i++)
+        for (int i = 0; i < waveCount * enemyPerWave; i++)
         {
             float delay = i * waveTime / enemyPerWave;
 
@@ -55,7 +66,7 @@ public class GameManagerScript : MonoBehaviour
             {
                 SpawnEnemy();  
             }
-            else if (i == wavecount * enemyPerWave - 1)
+            else if (i == waveCount * enemyPerWave - 1)
             {
                 Invoke("SpawnLastEnemy", delay);
             }
@@ -63,30 +74,81 @@ public class GameManagerScript : MonoBehaviour
             {
                 Invoke("SpawnEnemy", delay);
             }
-
         }
-        wavecount++;
     }
 
     private void SpawnEnemy()
     {
-        GameObject enemy = Instantiate(enemyPrefab, enemySpawnPoint.transform.position, enemySpawnPoint.transform.rotation);
-        enemy.GetComponent<EnemyController>().SetAIDestination(player);
-        //hp erosites
+        Vector2 playerPoint = player.transform.position;
+        float degree = Random.Range(0.0f, 359.9f);
+
+        float dx = spawnRadius * Mathf.Cos(degree);
+        float dy = spawnRadius * Mathf.Sin(degree);
+
+        if (playerPoint.x + dx >= 75.0f || playerPoint.x + dx <= -75.0f)
+        {
+            dx *= -1.0f;
+        }
+        if (playerPoint.y + dy >= 60.0f || playerPoint.y + dy <= -60.0f)
+        {
+            dy *= -1.0f;
+        }
+
+        Vector2 enemySpawn = new Vector2(playerPoint.x + dx, playerPoint.y + dy);
+
+        foreach (GameObject o in obstacles)
+        {
+            if (o.transform.position.x == enemySpawn.x && o.transform.position.y == enemySpawn.y)
+            {
+                enemySpawn.x -= o.transform.localScale.x;
+            }
+        }
+
+        GameObject enemy = Instantiate(enemyPrefab, enemySpawn, enemySpawnPoint.transform.rotation);
+        EnemyController ec = enemy.GetComponent<EnemyController>();
+        ec.SetAIDestination(player);
+        ec.SetMaxHealth(100.0f + waveCount * 10.0f);
         enemies.Add(enemy);
     }
 
-    private void SpawnLastEnemy()       //boss-hoz lehetne hasznalni
+    private void SpawnLastEnemy()
     {
+        Vector2 playerPoint = player.transform.position;
+        float degree = Random.Range(0.0f, 359.9f);
+
+        float dx = spawnRadius * Mathf.Cos(degree);
+        float dy = spawnRadius * Mathf.Sin(degree);
+
+        if (playerPoint.x + dx >= 75.0f || playerPoint.x + dx <= -75.0f)
+        {
+            dx *= -1.0f;
+        }
+        if (playerPoint.y + dy >= 60.0f || playerPoint.y + dy <= -60.0f)
+        {
+            dy *= -1.0f;
+        }
+
+        Vector2 enemySpawn = new Vector2(playerPoint.x + dx, playerPoint.y + dy);
+
+        foreach (GameObject o in obstacles)
+        {
+            if (o.transform.position.x == enemySpawn.x && o.transform.position.y == enemySpawn.y)
+            {
+                enemySpawn.x -= o.transform.localScale.x;
+            }
+        }
+
         GameObject enemy = Instantiate(enemyPrefab, enemySpawnPoint.transform.position, enemySpawnPoint.transform.rotation);
-        enemy.GetComponent<EnemyController>().SetAIDestination(player);
-        //hp erosites
+        EnemyController ec = enemy.GetComponent<EnemyController>();
+        ec.SetAIDestination(player);
+        ec.SetMaxHealth(100.0f + waveCount * 10.0f);
         enemies.Add(enemy);
         enemiesSpawning = false;
     }
 
     private void EndWave()
     {
+        waveCount++;
         waveActive = false;
         powerUpManager.CreatePowerUpWindow();
     }
@@ -102,5 +164,16 @@ public class GameManagerScript : MonoBehaviour
             }
         }
         return cnt;
+    }
+
+    private void EndGame()
+    {
+        CreateEndGameWindow();
+    }
+
+    private void CreateEndGameWindow()
+    {
+        EndGameUI.SetActive(true);
+        scoreText.text = "Waves survived: \n" + (waveCount - 1);
     }
 }

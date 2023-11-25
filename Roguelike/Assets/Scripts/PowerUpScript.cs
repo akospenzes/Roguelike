@@ -16,6 +16,8 @@ public class PowerUpScript : MonoBehaviour
     public PowerUpEffect effect7;
     public PowerUpEffect effect8;
     public PowerUpEffect effect9;
+    public PowerUpEffect effect10;
+    public PowerUpEffect effect11;
 
     [Header("PowerUp UI")]
     public GameObject UICanvas;
@@ -44,6 +46,8 @@ public class PowerUpScript : MonoBehaviour
         all_effects.Add(effect7);
         all_effects.Add(effect8);
         all_effects.Add(effect9);
+        all_effects.Add(effect10);
+        all_effects.Add(effect11);
 
         List<PowerUpEffect> selected_effects = new List<PowerUpEffect>();
 
@@ -60,11 +64,12 @@ public class PowerUpScript : MonoBehaviour
 
     public void CreatePowerUpWindow()
     {
+
         windowActive = true;
         List<PowerUpEffect> random_powerups = GetThreePowerUps();
-        effect1Text.text = random_powerups[0].weaponName + " : " + random_powerups[0].text;
-        effect2Text.text = random_powerups[1].weaponName + " : " + random_powerups[1].text;
-        effect3Text.text = random_powerups[2].weaponName + " : " + random_powerups[2].text;
+        effect1Text.text = random_powerups[0].text + random_powerups[0].weaponName;
+        effect2Text.text = random_powerups[1].text + random_powerups[1].weaponName;
+        effect3Text.text = random_powerups[2].text + random_powerups[2].weaponName;
         effect1Button.onClick.AddListener(delegate {ButtonPressed(random_powerups[0]);});
         effect2Button.onClick.AddListener(delegate {ButtonPressed(random_powerups[1]);});
         effect3Button.onClick.AddListener(delegate {ButtonPressed(random_powerups[2]);});
