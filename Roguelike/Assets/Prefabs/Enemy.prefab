@@ -339,6 +339,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+  damage: 20
   healthBarImage: {fileID: 6377441211868099644}
 --- !u!1 &4885804860922559697
 GameObject:

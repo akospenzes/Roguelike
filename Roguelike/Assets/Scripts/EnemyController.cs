@@ -9,6 +9,7 @@ public class EnemyController : MonoBehaviour
 {
     [Header("Enemy stats")]
     public float maxHealth;
+    public int damage;
 
     [Header("Healthbar")]
     public Image healthBarImage;
@@ -42,7 +43,7 @@ public class EnemyController : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            collision.gameObject.GetComponent<PlayerController>().HitByEnemy();
+            collision.gameObject.GetComponent<PlayerController>().HitByEnemy(damage);
 
             gameObject.GetComponent<AIDestinationSetter>().target = collision.gameObject.transform;
         }
@@ -56,5 +57,10 @@ public class EnemyController : MonoBehaviour
     public void SetMaxHealth(float amount)
     {
         maxHealth = amount;
+    }
+
+    public void IncreaseDamage(int amount)
+    {
+        damage += amount;
     }
 }

@@ -16,6 +16,7 @@ public class GameManagerScript : MonoBehaviour
     public GameObject EndGameUI;
     public TextMeshProUGUI scoreText;
     public float spawnRadius;
+    public GameObject healthPickUpPrefab;
 
     public GameObject enemySpawnPoint;
 
@@ -46,9 +47,8 @@ public class GameManagerScript : MonoBehaviour
                 EndWave();
             }
         }
-        if (pc.health <= 0)
+        if (pc.currentHealth <= 0)
         {
-            Debug.Log("game ended");
             EndGame();
         }
     }
@@ -75,6 +75,13 @@ public class GameManagerScript : MonoBehaviour
                 Invoke("SpawnEnemy", delay);
             }
         }
+
+        int healthPickUpAmount = waveCount / 3;
+
+        for (int i = 0; i < healthPickUpAmount; i++)
+        {
+            SpawnHealthPickUp(waveCount * 5);
+        }
     }
 
     private void SpawnEnemy()
@@ -98,16 +105,20 @@ public class GameManagerScript : MonoBehaviour
 
         foreach (GameObject o in obstacles)
         {
-            if (o.transform.position.x == enemySpawn.x && o.transform.position.y == enemySpawn.y)
+            if (enemySpawn.x < o.transform.position.x + o.transform.localScale.x / 2.0f
+                && enemySpawn.x > o.transform.position.x - o.transform.localScale.x / 2.0f
+                && enemySpawn.y < o.transform.position.y + o.transform.localScale.y / 2.0f
+                && enemySpawn.y > o.transform.position.y - o.transform.localScale.y / 2.0f)
             {
-                enemySpawn.x -= o.transform.localScale.x;
+                enemySpawn.x -= o.transform.localScale.x / 2.0f;
             }
         }
 
         GameObject enemy = Instantiate(enemyPrefab, enemySpawn, enemySpawnPoint.transform.rotation);
         EnemyController ec = enemy.GetComponent<EnemyController>();
         ec.SetAIDestination(player);
-        ec.SetMaxHealth(100.0f + waveCount * 10.0f);
+        ec.SetMaxHealth(100.0f + waveCount - 1 * 10.0f);
+        ec.IncreaseDamage(waveCount - 1 * 3);
         enemies.Add(enemy);
     }
 
@@ -175,5 +186,16 @@ public class GameManagerScript : MonoBehaviour
     {
         EndGameUI.SetActive(true);
         scoreText.text = "Waves survived: \n" + (waveCount - 1);
+    }
+
+    private void SpawnHealthPickUp(int healthAmount)
+    {
+        float x = Random.Range(-75.0f, 75.0f);
+        float y = Random.Range(-60.0f, 60.0f);
+
+        Vector2 pos = new Vector2(x, y);
+
+        GameObject healthPickUp = Instantiate(healthPickUpPrefab, pos, enemySpawnPoint.transform.rotation);
+        healthPickUp.gameObject.GetComponent<HealthPickUpScript>().SetHealthAmount(healthAmount);
     }
 }

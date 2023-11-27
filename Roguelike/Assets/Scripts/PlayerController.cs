@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,8 +6,9 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [Header("Player stats")]
-    public int health;
+    public int maxHealth;
     public float movementSpeed;
+    public int currentHealth;
 
     [Header("Weapons")]
     public Weapon pulseRifle;
@@ -22,6 +24,7 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         selectedWeapon = pulseRifle;
+        currentHealth = maxHealth;
     }
 
     void Update()
@@ -80,9 +83,9 @@ public class PlayerController : MonoBehaviour
         selectedWeapon.Shoot();
     }
 
-    public void HitByEnemy()
+    public void HitByEnemy(int damage)
     {
-        health--;
+        currentHealth -= damage;
         Physics2D.IgnoreLayerCollision(6, 9, true);
         Invoke("EnableEnemyCollision", 3);
     }
@@ -90,12 +93,21 @@ public class PlayerController : MonoBehaviour
     private void EnableEnemyCollision()
     {
         Physics2D.IgnoreLayerCollision(6, 9, false);
-
     }
 
     public void IncreaseHealth(int amount)
     {
-        health += amount;
+        currentHealth += amount;
+        if (currentHealth > maxHealth)
+        {
+            currentHealth = maxHealth;
+        }
+    }
+
+    public void IncreaseMaxHealth(int amount)
+    {
+        maxHealth += amount;
+        IncreaseHealth(amount);
     }
 
     public void IncreaseMovementSpeed(float amount)

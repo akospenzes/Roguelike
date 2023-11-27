@@ -8,6 +8,6 @@ public class IncreaseHealth : PowerUpEffect
     public int amount;
     public override void ApplyPowerUp()
     {
-        player.GetComponent<PlayerController>().IncreaseHealth(amount);
+        player.GetComponent<PlayerController>().IncreaseMaxHealth(amount);
     }
 }

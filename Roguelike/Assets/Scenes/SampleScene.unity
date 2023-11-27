@@ -777,6 +777,7 @@ GameObject:
   - component: {fileID: 460393985}
   - component: {fileID: 460393984}
   - component: {fileID: 460393983}
+  - component: {fileID: 460393986}
   m_Layer: 0
   m_Name: ButtonExit
   m_TagString: Untagged
@@ -847,7 +848,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 460393984}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 460393986}
+        m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
+        m_MethodName: BackToMenu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &460393984
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -886,6 +899,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 460393981}
   m_CullTransparentMesh: 1
+--- !u!114 &460393986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 460393981}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 848a80c67d648a04a9ed5d5b1ff36a55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &494288497
 GameObject:
   m_ObjectHideFlags: 0
@@ -1907,7 +1932,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1957624034}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1134320105
@@ -1927,11 +1953,12 @@ MonoBehaviour:
   obstacles: []
   player: {fileID: 262299078}
   enemyPrefab: {fileID: 2210099213266774570, guid: 81580cffe20beba4d8007e7a2d440773, type: 3}
-  waveTime: 10
+  waveTime: 5
   enemyPerWave: 5
   EndGameUI: {fileID: 835599983}
   scoreText: {fileID: 1860358772}
   spawnRadius: 30
+  healthPickUpPrefab: {fileID: 7471355627624575709, guid: 0c3a5de6672ead2499603e81411361b4, type: 3}
   enemySpawnPoint: {fileID: 1957624033}
 --- !u!1 &1135486206
 GameObject:
@@ -3785,12 +3812,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1957624033}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -12.3, y: -4.3, z: 1.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1134320104}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2004288180
 GameObject:
@@ -4083,7 +4110,7 @@ MonoBehaviour:
   weaponName: 
   text: Increase player health
   player: {fileID: 262299078}
-  amount: 1
+  amount: 20
 --- !u!114 &1046041043386373463 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 137624753093427658, guid: 39c0c2cdd585e084197c85d6fb0ab927, type: 3}
@@ -4168,6 +4195,10 @@ PrefabInstance:
       propertyPath: health
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 5579582038602523567, guid: 39c0c2cdd585e084197c85d6fb0ab927, type: 3}
+      propertyPath: maxHealth
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 8011401954310410390, guid: 39c0c2cdd585e084197c85d6fb0ab927, type: 3}
       propertyPath: m_Name
       value: Player
@@ -4234,5 +4265,4 @@ SceneRoots:
   - {fileID: 862048673}
   - {fileID: 1068457912}
   - {fileID: 800885217}
-  - {fileID: 1957624034}
   - {fileID: 2085316126}
