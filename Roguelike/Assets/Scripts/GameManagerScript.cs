@@ -30,6 +30,18 @@ public class GameManagerScript : MonoBehaviour
     {
         enemies = new List<GameObject>();
         pc = player.GetComponent<PlayerController>();
+
+        waveTime = MenuManager.WaveTime * 1.0f;
+        enemyPerWave = MenuManager.EnemiesPerWave;
+
+        if (waveTime == 0.0f)
+        {
+            waveTime = 60.0f;
+        }
+        if (enemyPerWave == 0)
+        {
+            enemyPerWave = 10;
+        }
     }
 
     private void Update()
@@ -194,6 +206,17 @@ public class GameManagerScript : MonoBehaviour
         float y = Random.Range(-60.0f, 60.0f);
 
         Vector2 pos = new Vector2(x, y);
+
+        foreach (GameObject o in obstacles)
+        {
+            if (pos.x < o.transform.position.x + o.transform.localScale.x / 2.0f
+                && pos.x > o.transform.position.x - o.transform.localScale.x / 2.0f
+                && pos.y < o.transform.position.y + o.transform.localScale.y / 2.0f
+                && pos.y > o.transform.position.y - o.transform.localScale.y / 2.0f)
+            {
+                pos.x -= o.transform.localScale.x / 2.0f;
+            }
+        }
 
         GameObject healthPickUp = Instantiate(healthPickUpPrefab, pos, enemySpawnPoint.transform.rotation);
         healthPickUp.gameObject.GetComponent<HealthPickUpScript>().SetHealthAmount(healthAmount);
