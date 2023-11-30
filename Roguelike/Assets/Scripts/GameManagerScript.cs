@@ -17,14 +17,17 @@ public class GameManagerScript : MonoBehaviour
     public float spawnRadius;
     public GameObject healthPickUpPrefab;
     public List<GameObject> obstacles;
+    public TMPro.TMP_Text waveText;
+    public TMPro.TMP_Text enemiesLeftText;
 
-    public GameObject enemySpawnPoint;
+    //public GameObject enemySpawnPoint;
  
     private int waveCount = 1;
     private List<GameObject> enemies;
     private bool waveActive = false;
     private bool windowActive;
     private bool enemiesSpawning = false;
+    private int spawnedEnemiesCount;
     private PlayerController pc;
     void Start()
     {
@@ -61,8 +64,11 @@ public class GameManagerScript : MonoBehaviour
         }
         if (pc.currentHealth <= 0)
         {
+            windowActive = true;
             EndGame();
         }
+
+        UpdatePlayerUI();
     }
 
     private void StartWave()
@@ -70,6 +76,7 @@ public class GameManagerScript : MonoBehaviour
         enemiesSpawning = true;
         waveActive = true;
         enemies.Clear();
+        spawnedEnemiesCount = 0;
         for (int i = 0; i < waveCount * enemyPerWave; i++)
         {
             float delay = i * waveTime / enemyPerWave;
@@ -126,12 +133,13 @@ public class GameManagerScript : MonoBehaviour
             }
         }
 
-        GameObject enemy = Instantiate(enemyPrefab, enemySpawn, enemySpawnPoint.transform.rotation);
+        GameObject enemy = Instantiate(enemyPrefab, enemySpawn, Quaternion.identity);
         EnemyController ec = enemy.GetComponent<EnemyController>();
         ec.SetAIDestination(player);
         ec.SetMaxHealth(100.0f + waveCount - 1 * 10.0f);
         ec.IncreaseDamage(waveCount - 1 * 3);
         enemies.Add(enemy);
+        spawnedEnemiesCount++;
     }
 
     private void SpawnLastEnemy()
@@ -161,12 +169,13 @@ public class GameManagerScript : MonoBehaviour
             }
         }
 
-        GameObject enemy = Instantiate(enemyPrefab, enemySpawnPoint.transform.position, enemySpawnPoint.transform.rotation);
+        GameObject enemy = Instantiate(enemyPrefab, enemySpawn, Quaternion.identity);
         EnemyController ec = enemy.GetComponent<EnemyController>();
         ec.SetAIDestination(player);
         ec.SetMaxHealth(100.0f + waveCount * 10.0f);
         enemies.Add(enemy);
         enemiesSpawning = false;
+        spawnedEnemiesCount++;
     }
 
     private void EndWave()
@@ -218,7 +227,14 @@ public class GameManagerScript : MonoBehaviour
             }
         }
 
-        GameObject healthPickUp = Instantiate(healthPickUpPrefab, pos, enemySpawnPoint.transform.rotation);
+        GameObject healthPickUp = Instantiate(healthPickUpPrefab, pos, Quaternion.identity);
         healthPickUp.gameObject.GetComponent<HealthPickUpScript>().SetHealthAmount(healthAmount);
+    }
+
+    private void UpdatePlayerUI()
+    {
+        waveText.text = "Wave : " + waveCount.ToString();
+        int e_left = waveCount * enemyPerWave - spawnedEnemiesCount + CountEnemies();
+        enemiesLeftText.text = "Enemies left : " + e_left.ToString();
     }
 }

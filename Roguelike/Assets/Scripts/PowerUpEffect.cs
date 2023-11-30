@@ -11,5 +11,6 @@ public class PowerUpEffect : MonoBehaviour
     public int multiplier;
     public string weaponName;
     public string text;
+    public float projectileSpeed;
     public virtual void ApplyPowerUp() { }
 }

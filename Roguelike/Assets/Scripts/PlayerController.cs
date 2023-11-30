@@ -2,9 +2,14 @@ using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
+    public GameObject firePoint;
+    public TMPro.TMP_Text healthText;
+    public TMPro.TMP_Text selectedWeaponText;
+
     [Header("Player stats")]
     public int maxHealth;
     public float movementSpeed;
@@ -16,11 +21,13 @@ public class PlayerController : MonoBehaviour
     public Weapon pistols;
 
     private Rigidbody2D rb;
+    private Rigidbody2D fp_rb;
     private Vector2 movementDir;
     private Vector2 mousePos;
     private Weapon selectedWeapon;
     private Animator animator;
     private SpriteRenderer spriteRenderer;
+    private Color spriteColor;
     
     void Start()
     {
@@ -29,11 +36,15 @@ public class PlayerController : MonoBehaviour
         currentHealth = maxHealth;
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteColor = spriteRenderer.color;
+        fp_rb = firePoint.GetComponent<Rigidbody2D>();
     }
 
     void Update()
     {
         GetInput();
+        UpdateFirePointPosition();
+        UpdatePlayerUI();
     }
 
     private void FixedUpdate()
@@ -93,7 +104,7 @@ public class PlayerController : MonoBehaviour
     {
         Vector2 lookDir = mousePos - rb.position;
         float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg - 90f;
-        rb.rotation = angle;
+        fp_rb.rotation = angle;
     }
 
     private void Shoot()
@@ -105,11 +116,15 @@ public class PlayerController : MonoBehaviour
     {
         currentHealth -= damage;
         Physics2D.IgnoreLayerCollision(6, 9, true);
+        Color c = spriteColor;
+        c.a = 0.5f;
+        spriteRenderer.color = c;
         Invoke("EnableEnemyCollision", 3);
     }
 
     private void EnableEnemyCollision()
     {
+        spriteRenderer.color = spriteColor;
         Physics2D.IgnoreLayerCollision(6, 9, false);
     }
 
@@ -131,5 +146,15 @@ public class PlayerController : MonoBehaviour
     public void IncreaseMovementSpeed(float amount)
     {
         movementSpeed += amount;
+    }
+    private void UpdateFirePointPosition()
+    {
+        fp_rb.position = rb.position;
+    }
+
+    private void UpdatePlayerUI()
+    {
+        healthText.text = "Health : " + currentHealth.ToString() + "/" + maxHealth.ToString();
+        selectedWeaponText.text = "Selected weapon : " + selectedWeapon.weaponName;
     }
 }

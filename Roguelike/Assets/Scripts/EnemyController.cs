@@ -7,6 +7,8 @@ using UnityEngine.UI;
 
 public class EnemyController : MonoBehaviour
 {
+    public GameObject effectPrefab;
+
     [Header("Enemy stats")]
     public float maxHealth;
     public int damage;
@@ -55,6 +57,8 @@ public class EnemyController : MonoBehaviour
     private void Despawn()
     {
         //play animation
+        GameObject effect = Instantiate(effectPrefab, transform.position, Quaternion.identity);
+        Destroy(effect, 0.35f);
         Destroy(gameObject);
     }
 

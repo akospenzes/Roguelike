@@ -5,6 +5,7 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
     [Header("Weapon Stats")]
+    public string weaponName;
     public float damage;
     public float cooldown;
     public int multiplier;
@@ -52,5 +53,10 @@ public class Weapon : MonoBehaviour
     public void IncreaseMultiplier(int multiplier_)
     {
         multiplier += multiplier_;
+    }
+
+    public void IncreaseProjectileSpeed(float amount)
+    {
+        projectileSpeed_ += amount;
     }
 }

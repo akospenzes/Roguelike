@@ -18,6 +18,9 @@ public class PowerUpScript : MonoBehaviour
     public PowerUpEffect effect9;
     public PowerUpEffect effect10;
     public PowerUpEffect effect11;
+    public PowerUpEffect effect12;
+    public PowerUpEffect effect13;
+    public PowerUpEffect effect14;
 
     [Header("PowerUp UI")]
     public GameObject UICanvas;
@@ -48,6 +51,9 @@ public class PowerUpScript : MonoBehaviour
         all_effects.Add(effect9);
         all_effects.Add(effect10);
         all_effects.Add(effect11);
+        all_effects.Add(effect12);
+        all_effects.Add(effect13);
+        all_effects.Add(effect14);
 
         List<PowerUpEffect> selected_effects = new List<PowerUpEffect>();
 

@@ -34,8 +34,7 @@ public class PulseRifle : Weapon
     }
 
     private void CreateProjectiles()
-    {   //eltolás
-
+    {
         Vector3 spawnPoint = projectileSpawnPoint_.position;
         Vector3 spawnPointUp = projectileSpawnPoint_.up;
 

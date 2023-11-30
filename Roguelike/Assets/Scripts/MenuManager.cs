@@ -14,6 +14,8 @@ public class MenuManager : MonoBehaviour
     public Button BackButton;
     public TMPro.TMP_InputField WaveTimeInput;
     public TMPro.TMP_InputField EnemiesPerWaveInput;
+    public TMPro.TMP_Text WaveTimeInputText;
+    public TMPro.TMP_Text EnemiesPerWaveInputText;
 
     public static float WaveTime = 60.0f;
     public static int EnemiesPerWave = 10;
@@ -39,9 +41,12 @@ public class MenuManager : MonoBehaviour
         BackButton.gameObject.SetActive(true);
         WaveTimeInput.gameObject.SetActive(true);
         EnemiesPerWaveInput.gameObject.SetActive(true);
+        WaveTimeInputText.gameObject.SetActive(true);
+        EnemiesPerWaveInputText.gameObject.SetActive(true);
 
         WaveTimeInput.text = WaveTime.ToString();
         EnemiesPerWaveInput.text = EnemiesPerWave.ToString();
+
     }
 
     public void ApplyOptions()
@@ -58,6 +63,8 @@ public class MenuManager : MonoBehaviour
         StartButton.gameObject.SetActive(true);
         OptionsButton.gameObject.SetActive(true);
         QuitButton.gameObject.SetActive(true);
+        WaveTimeInputText.gameObject.SetActive(false);
+        EnemiesPerWaveInputText.gameObject.SetActive(false);
     }
 
     public void BackWithoutApply()
@@ -71,5 +78,7 @@ public class MenuManager : MonoBehaviour
         StartButton.gameObject.SetActive(true);
         OptionsButton.gameObject.SetActive(true);
         QuitButton.gameObject.SetActive(true);
+        WaveTimeInputText.gameObject.SetActive(false);
+        EnemiesPerWaveInputText.gameObject.SetActive(false);
     }
 }

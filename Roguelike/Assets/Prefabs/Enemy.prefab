@@ -255,6 +255,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e31b3ebef29121d479ccb0c2407e6197, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  effectPrefab: {fileID: 1967835574231978638, guid: 3e196c9e632c76841a71cb6e2dc6d010, type: 3}
   maxHealth: 100
   damage: 20
   healthBarImage: {fileID: 6377441211868099644}
