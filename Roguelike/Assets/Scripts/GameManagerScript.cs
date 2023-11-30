@@ -8,7 +8,6 @@ public class GameManagerScript : MonoBehaviour
 {
     public PowerUpScript powerUpManager;
     public GameObject map;
-    public List<GameObject> obstacles;
     public GameObject player;
     public GameObject enemyPrefab;
     public float waveTime;
@@ -17,9 +16,10 @@ public class GameManagerScript : MonoBehaviour
     public TextMeshProUGUI scoreText;
     public float spawnRadius;
     public GameObject healthPickUpPrefab;
+    public List<GameObject> obstacles;
 
     public GameObject enemySpawnPoint;
-
+ 
     private int waveCount = 1;
     private List<GameObject> enemies;
     private bool waveActive = false;
