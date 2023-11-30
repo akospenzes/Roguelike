@@ -15,10 +15,29 @@ public class EnemyController : MonoBehaviour
     public Image healthBarImage;
 
     private float currentHealth;
+    private SpriteRenderer spriteRenderer;
+    private AIDestinationSetter destinationSetter;
 
     private void Start()
     {
         currentHealth = maxHealth;
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        destinationSetter = GetComponent<AIDestinationSetter>();
+    }
+
+    private void Update()
+    {
+        float x = transform.position.x;
+        float tx = destinationSetter.target.transform.position.x;
+
+        if (x - tx > 0.0f)
+        {
+            spriteRenderer.flipX = true;
+        }
+        else 
+        {
+            spriteRenderer.flipX = false;
+        }
     }
 
     public void ReduceHealth(float damage)

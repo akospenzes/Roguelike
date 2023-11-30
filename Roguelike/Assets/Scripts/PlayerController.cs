@@ -19,12 +19,16 @@ public class PlayerController : MonoBehaviour
     private Vector2 movementDir;
     private Vector2 mousePos;
     private Weapon selectedWeapon;
+    private Animator animator;
+    private SpriteRenderer spriteRenderer;
     
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         selectedWeapon = pulseRifle;
         currentHealth = maxHealth;
+        animator = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     void Update()
@@ -42,6 +46,20 @@ public class PlayerController : MonoBehaviour
     {
         float mx = Input.GetAxis("Horizontal");
         float my = Input.GetAxis("Vertical");
+
+        if (Mathf.Abs(mx) > 0.0f || Mathf.Abs(my) > 0.0f)
+        {
+            animator.SetBool("isRunning", true);
+            spriteRenderer.flipX = false;
+            if (mx < 0.0f)
+            {
+                spriteRenderer.flipX = true;
+            }
+        }
+        else
+        {
+            animator.SetBool("isRunning", false);
+        }
 
         movementDir = new Vector2(mx, my);
 

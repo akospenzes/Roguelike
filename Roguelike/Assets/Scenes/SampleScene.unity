@@ -6658,6 +6658,22 @@ PrefabInstance:
       propertyPath: projectileSpawnPoint_
       value: 
       objectReference: {fileID: 1908832598}
+    - target: {fileID: 2839359925506150978, guid: 39c0c2cdd585e084197c85d6fb0ab927, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.23
+      objectReference: {fileID: 0}
+    - target: {fileID: 2839359925506150978, guid: 39c0c2cdd585e084197c85d6fb0ab927, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.62
+      objectReference: {fileID: 0}
+    - target: {fileID: 2839359925506150978, guid: 39c0c2cdd585e084197c85d6fb0ab927, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4096569793320979936, guid: 39c0c2cdd585e084197c85d6fb0ab927, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4474520187152786984, guid: 39c0c2cdd585e084197c85d6fb0ab927, type: 3}
       propertyPath: cooldown
       value: 1
@@ -6687,8 +6703,20 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5579582038602523567, guid: 39c0c2cdd585e084197c85d6fb0ab927, type: 3}
+      propertyPath: firePoint
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5579582038602523567, guid: 39c0c2cdd585e084197c85d6fb0ab927, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5579582038602523567, guid: 39c0c2cdd585e084197c85d6fb0ab927, type: 3}
       propertyPath: maxHealth
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 6804638896582924861, guid: 39c0c2cdd585e084197c85d6fb0ab927, type: 3}
+      propertyPath: m_Constraints
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8011401954310410390, guid: 39c0c2cdd585e084197c85d6fb0ab927, type: 3}
       propertyPath: m_Name
@@ -6734,10 +6762,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 9134757492108615919, guid: 39c0c2cdd585e084197c85d6fb0ab927, type: 3}
+      propertyPath: m_Avatar
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 9134757492108615919, guid: 39c0c2cdd585e084197c85d6fb0ab927, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 0}
     m_RemovedGameObjects:
     - {fileID: 3181471439391289667, guid: 39c0c2cdd585e084197c85d6fb0ab927, type: 3}
     - {fileID: 5036844264408643674, guid: 39c0c2cdd585e084197c85d6fb0ab927, type: 3}
+    - {fileID: 8605051819309977648, guid: 39c0c2cdd585e084197c85d6fb0ab927, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 39c0c2cdd585e084197c85d6fb0ab927, type: 3}
