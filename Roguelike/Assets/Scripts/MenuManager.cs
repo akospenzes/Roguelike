@@ -20,6 +20,8 @@ public class MenuManager : MonoBehaviour
     public TMPro.TMP_Text SFXSliderText;
     public Slider MusicSlider;
     public Slider SFXSlider;
+    public GameObject QuitUICanvas;
+    public GameObject PlayerUICanvas;
 
     public static float WaveTime = 45.0f;
     public static int EnemiesPerWave = 10;
@@ -32,6 +34,11 @@ public class MenuManager : MonoBehaviour
     public void QuitGame()
     {
         Application.Quit();
+    }
+    public void ContinueGame()
+    {
+        PlayerUICanvas.SetActive(true);
+        QuitUICanvas.SetActive(false);
     }
     public void BackToMenu()
     {

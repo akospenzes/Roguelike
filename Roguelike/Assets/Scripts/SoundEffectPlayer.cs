@@ -9,6 +9,13 @@ public class SoundEffectPlayer : MonoBehaviour
     public AudioSource healthPickUp;
     public AudioSource enemy;
 
+    public AudioSource music;
+
+    private void Start()
+    {
+        music.volume = MenuManager.MusicValue;
+    }
+
     public void PlayProjectileSound()
     {
         projectile.volume = MenuManager.SFXValue;

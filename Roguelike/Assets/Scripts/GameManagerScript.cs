@@ -232,8 +232,9 @@ public class GameManagerScript : MonoBehaviour
         }
 
         GameObject healthPickUp = Instantiate(healthPickUpPrefab, pos, Quaternion.identity);
-        healthPickUp.gameObject.GetComponent<HealthPickUpScript>().SetHealthAmount(healthAmount);
-        healthPickUp.gameObject.GetComponent<HealthPickUpScript>().SetEffectPlayer(SFXPlayer);
+        HealthPickUpScript hc = healthPickUp.GetComponent<HealthPickUpScript>();
+        hc.SetHealthAmount(healthAmount);
+        hc.SetEffectPlayer(SFXPlayer);
     }
 
     private void UpdatePlayerUI()

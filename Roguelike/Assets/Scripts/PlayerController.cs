@@ -14,6 +14,10 @@ public class PlayerController : MonoBehaviour
     public TMPro.TMP_Text weaponFireRateText;
     public TMPro.TMP_Text weaponMultiplierText;
     public TMPro.TMP_Text weaponProjectileSpeedText;
+    public Canvas powerUpUI;
+    public Canvas quitUI;
+    public Canvas gameOverUI;
+    public Canvas playerUI;
 
     [Header("Player stats")]
     public int maxHealth;
@@ -33,6 +37,7 @@ public class PlayerController : MonoBehaviour
     private Animator animator;
     private SpriteRenderer spriteRenderer;
     private Color spriteColor;
+    private bool windowActive;
     
     void Start()
     {
@@ -47,15 +52,22 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        GetInput();
+        windowActive = powerUpUI.isActiveAndEnabled || quitUI.isActiveAndEnabled || gameOverUI.isActiveAndEnabled;
+        if (!gameOverUI.isActiveAndEnabled) 
+        {
+            GetInput();
+        }
         UpdateFirePointPosition();
         UpdatePlayerUI();
     }
 
     private void FixedUpdate()
     {
-        Move();
-        Rotate();
+        if (!windowActive)
+        {
+            Move();
+            Rotate();
+        }
     }
 
     private void GetInput()
@@ -97,6 +109,20 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown("3"))
         {
             selectedWeapon = pistols;
+        }
+
+        if (Input.GetKeyDown("escape"))
+        {
+            if (quitUI.gameObject.activeSelf)
+            {
+                quitUI.gameObject.SetActive(false);
+                playerUI.gameObject.SetActive(true);
+            }
+            else
+            {
+                quitUI.gameObject.SetActive(true);
+                playerUI.gameObject.SetActive(false);
+            }
         }
     }
 

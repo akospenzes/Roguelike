@@ -70,7 +70,6 @@ public class PowerUpScript : MonoBehaviour
 
     public void CreatePowerUpWindow()
     {
-
         windowActive = true;
         List<PowerUpEffect> random_powerups = GetThreePowerUps();
         effect1Text.text = random_powerups[0].text + random_powerups[0].weaponName;
@@ -86,6 +85,9 @@ public class PowerUpScript : MonoBehaviour
     {
         windowActive = false;
         p.ApplyPowerUp();
+        effect1Button.onClick.RemoveAllListeners();
+        effect2Button.onClick.RemoveAllListeners();
+        effect3Button.onClick.RemoveAllListeners();
         UICanvas.SetActive(false);
     }
 
