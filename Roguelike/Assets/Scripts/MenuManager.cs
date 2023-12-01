@@ -16,9 +16,15 @@ public class MenuManager : MonoBehaviour
     public TMPro.TMP_InputField EnemiesPerWaveInput;
     public TMPro.TMP_Text WaveTimeInputText;
     public TMPro.TMP_Text EnemiesPerWaveInputText;
+    public TMPro.TMP_Text MusicSliderText;
+    public TMPro.TMP_Text SFXSliderText;
+    public Slider MusicSlider;
+    public Slider SFXSlider;
 
     public static float WaveTime = 45.0f;
     public static int EnemiesPerWave = 10;
+    public static float MusicValue = 1.0f;
+    public static float SFXValue = 1.0f;
     public void StartGame()
     {
         SceneManager.LoadScene("SampleScene");
@@ -43,6 +49,10 @@ public class MenuManager : MonoBehaviour
         EnemiesPerWaveInput.gameObject.SetActive(true);
         WaveTimeInputText.gameObject.SetActive(true);
         EnemiesPerWaveInputText.gameObject.SetActive(true);
+        MusicSliderText.gameObject.SetActive(true);
+        SFXSliderText.gameObject.SetActive(true);
+        MusicSlider.gameObject.SetActive(true);
+        SFXSlider.gameObject.SetActive(true);
 
         WaveTimeInput.text = WaveTime.ToString();
         EnemiesPerWaveInput.text = EnemiesPerWave.ToString();
@@ -53,6 +63,8 @@ public class MenuManager : MonoBehaviour
     {
         WaveTime = float.Parse(WaveTimeInput.text);
         EnemiesPerWave = int.Parse(EnemiesPerWaveInput.text);
+        MusicValue = MusicSlider.value;
+        SFXValue = SFXSlider.value;
 
         WaveTimeInput.gameObject.SetActive(false);
         EnemiesPerWaveInput.gameObject.SetActive(false);
@@ -65,6 +77,10 @@ public class MenuManager : MonoBehaviour
         QuitButton.gameObject.SetActive(true);
         WaveTimeInputText.gameObject.SetActive(false);
         EnemiesPerWaveInputText.gameObject.SetActive(false);
+        MusicSliderText.gameObject.SetActive(false);
+        SFXSliderText.gameObject.SetActive(false);
+        MusicSlider.gameObject.SetActive(false);
+        SFXSlider.gameObject.SetActive(false);
     }
 
     public void BackWithoutApply()
@@ -80,5 +96,9 @@ public class MenuManager : MonoBehaviour
         QuitButton.gameObject.SetActive(true);
         WaveTimeInputText.gameObject.SetActive(false);
         EnemiesPerWaveInputText.gameObject.SetActive(false);
+        MusicSliderText.gameObject.SetActive(false);
+        SFXSliderText.gameObject.SetActive(false);
+        MusicSlider.gameObject.SetActive(false);
+        SFXSlider.gameObject.SetActive(false);
     }
 }

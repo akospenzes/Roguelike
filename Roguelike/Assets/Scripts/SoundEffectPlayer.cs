@@ -11,14 +11,17 @@ public class SoundEffectPlayer : MonoBehaviour
 
     public void PlayProjectileSound()
     {
+        projectile.volume = MenuManager.SFXValue;
         projectile.Play();
     }
     public void PlayHealthPickupSound()
     {
+        healthPickUp.volume = MenuManager.SFXValue;
         healthPickUp.Play();
     }
     public void PlayEnemySound()
     {
+        enemy.volume = MenuManager.SFXValue;
         enemy.Play();
     }
 }

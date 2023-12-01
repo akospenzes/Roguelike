@@ -8,7 +8,12 @@ public class PlayerController : MonoBehaviour
 {
     public GameObject firePoint;
     public TMPro.TMP_Text healthText;
+    public TMPro.TMP_Text movementSpeedText;
     public TMPro.TMP_Text selectedWeaponText;
+    public TMPro.TMP_Text weaponDamageText;
+    public TMPro.TMP_Text weaponFireRateText;
+    public TMPro.TMP_Text weaponMultiplierText;
+    public TMPro.TMP_Text weaponProjectileSpeedText;
 
     [Header("Player stats")]
     public int maxHealth;
@@ -155,6 +160,11 @@ public class PlayerController : MonoBehaviour
     private void UpdatePlayerUI()
     {
         healthText.text = "Health : " + currentHealth.ToString() + "/" + maxHealth.ToString();
+        movementSpeedText.text = "Movement speed : " + movementSpeed.ToString();
         selectedWeaponText.text = "Selected weapon : " + selectedWeapon.weaponName;
-    }
+        weaponDamageText.text = "Damage : " + selectedWeapon.damage.ToString();
+        weaponFireRateText.text = "Fire rate : " + (1.0f / selectedWeapon.cooldown).ToString();
+        weaponMultiplierText.text = "Multiplier : " + selectedWeapon.multiplier.ToString();
+        weaponProjectileSpeedText.text = "Projectile speed : " + selectedWeapon.projectileSpeed_.ToString();
+}
 }
