@@ -20,6 +20,7 @@ public class Pistols : Weapon
     {
         if (canShoot)
         {
+            base.Shoot();
             for (int i = 0; i < multiplier; i++)
             {
                 if (i == 0)

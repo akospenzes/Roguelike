@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthAmount: 10
+  effectPlayer: {fileID: 2475478927673541199, guid: 26304b7071c22da4892e3b826fcbdc68, type: 3}
 --- !u!58 &2580851073507581552
 CircleCollider2D:
   m_ObjectHideFlags: 0

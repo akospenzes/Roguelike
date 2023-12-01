@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class HealthPickUpScript : MonoBehaviour
 {
     public int healthAmount;
-
+    public SoundEffectPlayer effectPlayer;
     private void Start()
     {
         Invoke("DestroyHealthPickUp", 150.0f);
@@ -20,8 +21,8 @@ public class HealthPickUpScript : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
+            effectPlayer.PlayHealthPickupSound();
             collision.gameObject.GetComponent<PlayerController>().IncreaseHealth(healthAmount);
-            //animacio
             Destroy(gameObject);
         }
     }
@@ -29,5 +30,10 @@ public class HealthPickUpScript : MonoBehaviour
     public void SetHealthAmount(int amount)
     {
         healthAmount = amount;
+    }
+
+    public void SetEffectPlayer(GameObject sfx)
+    {
+        effectPlayer = sfx.GetComponent<SoundEffectPlayer>();
     }
 }

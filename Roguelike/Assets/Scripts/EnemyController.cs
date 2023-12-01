@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class EnemyController : MonoBehaviour
 {
     public GameObject effectPrefab;
+    public SoundEffectPlayer effectPlayer;
 
     [Header("Enemy stats")]
     public float maxHealth;
@@ -22,7 +23,6 @@ public class EnemyController : MonoBehaviour
 
     private void Start()
     {
-        currentHealth = maxHealth;
         spriteRenderer = GetComponent<SpriteRenderer>();
         destinationSetter = GetComponent<AIDestinationSetter>();
     }
@@ -56,7 +56,7 @@ public class EnemyController : MonoBehaviour
 
     private void Despawn()
     {
-        //play animation
+        effectPlayer.PlayEnemySound();
         GameObject effect = Instantiate(effectPrefab, transform.position, Quaternion.identity);
         Destroy(effect, 0.35f);
         Destroy(gameObject);
@@ -80,10 +80,15 @@ public class EnemyController : MonoBehaviour
     public void SetMaxHealth(float amount)
     {
         maxHealth = amount;
+        currentHealth = maxHealth;
     }
 
     public void IncreaseDamage(int amount)
     {
         damage += amount;
+    }
+    public void SetEffectPlayer(GameObject sfx)
+    {
+        effectPlayer = sfx.GetComponent<SoundEffectPlayer>();
     }
 }

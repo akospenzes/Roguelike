@@ -16,6 +16,7 @@ public class Weapon : MonoBehaviour
     public GameObject projectilePrefab_;
     public Transform projectileSpawnPoint_;
     public float projectileSpeed_;
+    public SoundEffectPlayer effectPlayer;
 
     protected virtual void Start()
     {
@@ -35,12 +36,19 @@ public class Weapon : MonoBehaviour
         }
     }
 
-    public virtual void Shoot(){ }
+    public virtual void Shoot()
+    {
+        effectPlayer.PlayProjectileSound();
+    }
 
     public void IncreaseFireRate(float fireRate) 
     {
         if (fireRate > 1.0f) 
         {
+            if (cooldown < 0.001f)
+            {
+                return;
+            }
             cooldown /= fireRate;
         }
     }
@@ -52,6 +60,10 @@ public class Weapon : MonoBehaviour
 
     public void IncreaseMultiplier(int multiplier_)
     {
+        if (multiplier > 50)
+        {
+            return;
+        }
         multiplier += multiplier_;
     }
 

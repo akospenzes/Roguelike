@@ -19,6 +19,7 @@ public class GameManagerScript : MonoBehaviour
     public List<GameObject> obstacles;
     public TMPro.TMP_Text waveText;
     public TMPro.TMP_Text enemiesLeftText;
+    public GameObject SFXPlayer;
 
     //public GameObject enemySpawnPoint;
  
@@ -39,7 +40,7 @@ public class GameManagerScript : MonoBehaviour
 
         if (waveTime == 0.0f)
         {
-            waveTime = 60.0f;
+            waveTime = 45.0f;
         }
         if (enemyPerWave == 0)
         {
@@ -136,7 +137,8 @@ public class GameManagerScript : MonoBehaviour
         GameObject enemy = Instantiate(enemyPrefab, enemySpawn, Quaternion.identity);
         EnemyController ec = enemy.GetComponent<EnemyController>();
         ec.SetAIDestination(player);
-        ec.SetMaxHealth(100.0f + waveCount - 1 * 10.0f);
+        ec.SetEffectPlayer(SFXPlayer);
+        ec.SetMaxHealth(100.0f + (waveCount - 1) * 10.0f);
         ec.IncreaseDamage(waveCount - 1 * 3);
         enemies.Add(enemy);
         spawnedEnemiesCount++;
@@ -172,7 +174,9 @@ public class GameManagerScript : MonoBehaviour
         GameObject enemy = Instantiate(enemyPrefab, enemySpawn, Quaternion.identity);
         EnemyController ec = enemy.GetComponent<EnemyController>();
         ec.SetAIDestination(player);
-        ec.SetMaxHealth(100.0f + waveCount * 10.0f);
+        ec.SetEffectPlayer(SFXPlayer);
+        ec.SetMaxHealth(100.0f + (waveCount - 1) * 10.0f);
+        ec.IncreaseDamage(waveCount - 1 * 3);
         enemies.Add(enemy);
         enemiesSpawning = false;
         spawnedEnemiesCount++;
@@ -229,6 +233,7 @@ public class GameManagerScript : MonoBehaviour
 
         GameObject healthPickUp = Instantiate(healthPickUpPrefab, pos, Quaternion.identity);
         healthPickUp.gameObject.GetComponent<HealthPickUpScript>().SetHealthAmount(healthAmount);
+        healthPickUp.gameObject.GetComponent<HealthPickUpScript>().SetEffectPlayer(SFXPlayer);
     }
 
     private void UpdatePlayerUI()
