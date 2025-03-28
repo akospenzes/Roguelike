@@ -338,6 +338,8 @@ MonoBehaviour:
   SFXSliderText: {fileID: 557116387}
   MusicSlider: {fileID: 1036066708}
   SFXSlider: {fileID: 1555825721}
+  QuitUICanvas: {fileID: 0}
+  PlayerUICanvas: {fileID: 0}
 --- !u!114 &133121182
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -489,7 +491,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Nem vagyok el\xE9g kreat\xEDv, hogy kital\xE1ljak egy nevet"
+  m_text: Roguelike game
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4d2ae00a05c0412409da5dc273d5d230, type: 2}
   m_sharedMaterial: {fileID: 4040780171199797655, guid: 4d2ae00a05c0412409da5dc273d5d230, type: 2}
@@ -1045,6 +1047,8 @@ MonoBehaviour:
   SFXSliderText: {fileID: 557116387}
   MusicSlider: {fileID: 1036066708}
   SFXSlider: {fileID: 1555825721}
+  QuitUICanvas: {fileID: 0}
+  PlayerUICanvas: {fileID: 0}
 --- !u!1 &421808580
 GameObject:
   m_ObjectHideFlags: 0
@@ -1873,6 +1877,8 @@ MonoBehaviour:
   SFXSliderText: {fileID: 557116387}
   MusicSlider: {fileID: 1036066708}
   SFXSlider: {fileID: 1555825721}
+  QuitUICanvas: {fileID: 0}
+  PlayerUICanvas: {fileID: 0}
 --- !u!114 &627404790
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3200,6 +3206,8 @@ MonoBehaviour:
   SFXSliderText: {fileID: 557116387}
   MusicSlider: {fileID: 1036066708}
   SFXSlider: {fileID: 1555825721}
+  QuitUICanvas: {fileID: 0}
+  PlayerUICanvas: {fileID: 0}
 --- !u!114 &1312665511
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4417,6 +4425,8 @@ MonoBehaviour:
   SFXSliderText: {fileID: 557116387}
   MusicSlider: {fileID: 1036066708}
   SFXSlider: {fileID: 1555825721}
+  QuitUICanvas: {fileID: 0}
+  PlayerUICanvas: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
